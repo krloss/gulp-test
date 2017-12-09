@@ -6,6 +6,7 @@ var uglify = require('gulp-uglify');
 var es = require('event-stream');
 var htmlmin = require('gulp-htmlmin');
 var cleanCSS = require('gulp-clean-css');
+var runSequence = require('run-sequence');
 
 gulp.task('clean',function() {
 	return gulp.src('dist/').pipe(clean());
@@ -17,7 +18,7 @@ gulp.task('jshint', function() {
 		.pipe(jshint.reporter('default'));
 });
 
-gulp.task('uglify',['clean'],function() {
+gulp.task('uglify',function() {
 	return es.merge([
 			gulp.src(['bower_libs/**/dist/*.min.js']),
 			gulp.src('js/**/*.js').pipe(concat('tmp.js')).pipe(uglify())
@@ -33,11 +34,13 @@ gulp.task('cleanCSS',function() {
 		.pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('htmlmin',function() {
+gulp.task('htmlmin',['cleanCSS'],function() {
 	return gulp.src('view/*.html')
 		.pipe(htmlmin({collapseWhitespace:true}))
 		.pipe(gulp.dest('dist/view'));
 });
 
-gulp.task('default',['jshint','uglify','htmlmin','cleanCSS']);
+gulp.task('default',function(callBack) {
+	return runSequence('clean',['jshint','uglify','htmlmin'],callBack);
+});
 
