@@ -5,3 +5,7 @@ sudo npm install -g gulp-cli
 npm install gulp --save-dev
 gulp -v
 
+gulp
+
+npm install jshint gulp-jshint --save-dev
+gulp jshint
