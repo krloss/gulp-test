@@ -10,3 +10,4 @@ gulp
 npm install jshint gulp-jshint --save-dev
 npm install --save-dev gulp-clean
 gulp clean
+npm install --save-dev gulp-concat
