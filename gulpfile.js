@@ -4,6 +4,7 @@ var clean = require('gulp-clean');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var es = require('event-stream');
+var htmlmin = require('gulp-htmlmin');
 
 gulp.task('clean',function() {
 	return gulp.src('dist/')
@@ -25,5 +26,11 @@ gulp.task('uglify',['clean'],function() {
 		.pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('default',['jshint','uglify']);
+gulp.task('htmlmin',function() {
+	return gulp.src('view/*.html')
+		.pipe(htmlmin({collapseWhitespace:true}))
+		.pipe(gulp.dest('dist/view'));
+});
+
+gulp.task('default',['jshint','uglify','htmlmin']);
 
