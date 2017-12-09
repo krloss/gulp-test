@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Teste</title>
+    <meta charset="utf-8">
+    <style>
+      html,body { height:100%; margin:0; padding:0; }
+      #app-01 { font-size:20px; }
+      .app01 { font-weight:bold; }
+    </style>
+    <!-- script src="https://unpkg.com/vue"></script //-->
+    <script src="bower_libs/vue/dist/vue.min.js"></script>
+    <script src="js/index.js"></script>
+  </head>
+  <body>
+    <div id="app-01" class="app01">{{message}}</div>
+    <div id="app-02"> <span v-bind:title="message">
+        Hover your mouse over me for a few seconds to see my dynamically bound title!
+    </span> </div>
+    <div id="app-03"> <p v-if="seen">Now you see me</p> </div>
+    <div id="app-04"> <ol>
+      <li v-for="todo in todos">{{todo.text}}</li>
+    </ol> </div>
+    <div id="app-05"> <p>{{message}}</p> <button v-on:click="reverseMessage">Reverse Message</button> </div>
+    <div id="app-06"> <p>{{message}}</p> <input v-model="message"> </div>
+    <div id="app-07"> <ol>
+      <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+    </ol> </div>
+    <div id='app-10' v-bind='atributo'>Sem Cor</div>
+    
+    <script>
+      var teste = initDOM();
+
+      teste.app04.todos.push({text:'Novo Item'});
+    </script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "test-gulp",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Carlos Henrique <krloss@github.com>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "bower_libs/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "~2.5.9"
+  }
+}
