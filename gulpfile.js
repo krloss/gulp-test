@@ -7,6 +7,7 @@ var es = require('event-stream');
 var htmlmin = require('gulp-htmlmin');
 var cleanCSS = require('gulp-clean-css');
 var runSequence = require('run-sequence');
+var rename = require('gulp-rename');
 
 gulp.task('clean',function() {
 	return gulp.src('dist/').pipe(clean());
@@ -34,13 +35,19 @@ gulp.task('cleanCSS',function() {
 		.pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('htmlmin',['cleanCSS'],function() {
+gulp.task('htmlmin',function() {
 	return gulp.src('view/*.html')
 		.pipe(htmlmin({collapseWhitespace:true}))
 		.pipe(gulp.dest('dist/view'));
 });
 
+gulp.task('copia',['htmlmin'],function() {
+	return gulp.src('dist/view/index.html')
+		.pipe(rename('app.html'))
+		.pipe(gulp.dest('dist/'));
+});
+
 gulp.task('default',function(callBack) {
-	return runSequence('clean',['jshint','uglify','htmlmin'],callBack);
+	return runSequence('clean',['jshint','uglify','cleanCSS','copia'],callBack);
 });
 

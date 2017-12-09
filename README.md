@@ -16,3 +16,4 @@ npm install event-stream --save-dev
 npm i gulp-htmlmin --save-dev
 npm install gulp-clean-css --save-dev
 npm install --save-dev run-sequence
+npm install gulp-rename --save-dev
