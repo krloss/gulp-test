@@ -1,5 +1,11 @@
 var gulp = require('gulp');
 var jshint = require('gulp-jshint');
+var clean = require('gulp-clean');
+
+gulp.task('clean',function() {
+	return gulp.src('dist/')
+		.pipe(clean());
+});
 
 gulp.task('jshint', function() {
 	return gulp.src('js/**/*.js')
@@ -7,5 +13,10 @@ gulp.task('jshint', function() {
 		.pipe(jshint.reporter('default'));
 });
 
-gulp.task('default',['jshint']);
+gulp.task('uglify',['clean'],function() {
+	return gulp.src('js/**/*.js')
+		.pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('default',['jshint','uglify']);
 

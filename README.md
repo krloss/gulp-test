@@ -8,4 +8,5 @@ gulp -v
 gulp
 
 npm install jshint gulp-jshint --save-dev
-gulp jshint
+npm install --save-dev gulp-clean
+gulp clean
