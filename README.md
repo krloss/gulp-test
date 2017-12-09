@@ -11,3 +11,5 @@ npm install jshint gulp-jshint --save-dev
 npm install --save-dev gulp-clean
 gulp clean
 npm install --save-dev gulp-concat
+npm install --save-dev gulp-uglify
+npm install event-stream --save-dev
