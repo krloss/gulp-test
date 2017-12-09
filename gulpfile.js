@@ -5,10 +5,10 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var es = require('event-stream');
 var htmlmin = require('gulp-htmlmin');
+var cleanCSS = require('gulp-clean-css');
 
 gulp.task('clean',function() {
-	return gulp.src('dist/')
-		.pipe(clean());
+	return gulp.src('dist/').pipe(clean());
 });
 
 gulp.task('jshint', function() {
@@ -26,11 +26,18 @@ gulp.task('uglify',['clean'],function() {
 		.pipe(gulp.dest('dist/js'));
 });
 
+gulp.task('cleanCSS',function() {
+	return gulp.src('css/**/*.css')
+		.pipe(cleanCSS())
+		.pipe(concat('app.min.css'))
+		.pipe(gulp.dest('dist/css'));
+});
+
 gulp.task('htmlmin',function() {
 	return gulp.src('view/*.html')
 		.pipe(htmlmin({collapseWhitespace:true}))
 		.pipe(gulp.dest('dist/view'));
 });
 
-gulp.task('default',['jshint','uglify','htmlmin']);
+gulp.task('default',['jshint','uglify','htmlmin','cleanCSS']);
 
