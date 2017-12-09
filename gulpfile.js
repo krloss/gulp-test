@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var jshint = require('gulp-jshint');
 var clean = require('gulp-clean');
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
 
 gulp.task('clean',function() {
 	return gulp.src('dist/')
@@ -15,7 +16,9 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('uglify',['clean'],function() {
-	return gulp.src(['bower_libs/**/dist/*.min.js','js/**/*.js'])
+// bower_libs/**/dist/*.min.js
+	return gulp.src(['js/**/*.js'])
+		.pipe(uglify())
 		.pipe(concat('scripts.js'))
 		.pipe(gulp.dest('dist/js'));
 });
